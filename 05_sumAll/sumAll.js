@@ -7,30 +7,19 @@
 const sumAll = function(start, end) {
     let finalNum;
     //error for negative number
-    if(start < 0 || end < 0){
-        return 'ERROR';
+    if(start < 0 || end < 0) return 'ERROR';
+    if(isNaN(start) || isNaN(end) || typeof start  === 'string' || typeof end === 'string') return 'ERROR';
+    //Swaps start and end if start is bigger
+    if(start > end){
+        const holder =  start;
+        start = end;
+        end = holder;
     }
-    // error if input is not a number
-    if(isNaN(start) || isNaN(end) || typeof start  === 'string' || typeof end === 'string'){
-        return 'ERROR';
+    finalNum = start;
+    for(i=start + 1;i <= end; i++){
+        finalNum += i;
     }
-    //smaller first
-    if(start < end){
-        let finalNum = start;
-        for(i=start + 1;i <= end; i++){
-            finalNum += i;
-        }
-        return finalNum;
-    }
-    //bigger first
-    if(start>end){
-        let finalNum = end;
-        for(i=end + 1;i <= start; i++){
-            finalNum += i;
-        }
-        return finalNum;
-    }
-
+    return finalNum;
 };
 
 // Do not edit below this line
